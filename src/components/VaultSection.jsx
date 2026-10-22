@@ -140,8 +140,24 @@ export default function VaultSection({
           </button>
         </div>
 
-        {/* Letters Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
+        {/* Letters Grid or Empty State */}
+        {letters.length === 0 ? (
+          <div className="bg-[#FDFBF7] border-2 border-dashed border-[#2C2A29] rounded-2xl p-10 text-center space-y-4 max-w-lg mx-auto my-6">
+            <Mail className="w-12 h-12 mx-auto text-[#D96B5F]" />
+            <h3 className="font-serif text-2xl font-bold text-[#2C2A29]">Belum Ada Surat</h3>
+            <p className="text-sm text-[#2C2A29]/75 font-medium">
+              Brankas surat dan kapsul waktu masih kosong. Tulis surat rahasia atau pesan masa depan untuk pasanganmu sekarang!
+            </p>
+            <button
+              onClick={onAddLetter}
+              className="px-5 py-2.5 rounded-xl bg-[#F4A298] text-[#2C2A29] border-2 border-[#2C2A29] font-bold text-sm shadow-tactile inline-flex items-center gap-2 hover:translate-x-0.5 hover:translate-y-0.5 transition"
+            >
+              <Send className="w-4 h-4" />
+              <span>Tulis Surat Pertama</span>
+            </button>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
           {letters.map((letter) => {
             const isAuthor = 
               letter.author?.toUpperCase() === currentUser?.username?.toUpperCase() ||
@@ -287,7 +303,8 @@ export default function VaultSection({
               </div>
             );
           })}
-        </div>
+          </div>
+        )}
       </div>
 
       {/* LETTER READER MODAL */}

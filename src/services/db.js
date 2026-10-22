@@ -132,21 +132,13 @@ export const getMemories = async () => {
         .select('*')
         .order('date', { ascending: false });
 
-      if (!error && data) {
-        if (data.length > 0) {
-          // Cache into local IndexedDB
-          for (const m of data) {
-            await executeLocalTx('memories', 'readwrite', store => store.put(m));
-          }
-          return data;
-        } else {
-          // Seed cloud with initial memories if completely empty
-          for (const item of INITIAL_MEMORIES) {
-            await supabase.from('memories').upsert(item);
-            await executeLocalTx('memories', 'readwrite', store => store.put(item));
-          }
-          return INITIAL_MEMORIES;
+      if (!error && Array.isArray(data)) {
+        // Sync local IndexedDB cache with cloud
+        await executeLocalTx('memories', 'readwrite', store => store.clear());
+        for (const m of data) {
+          await executeLocalTx('memories', 'readwrite', store => store.put(m));
         }
+        return data;
       }
     } catch (err) {
       console.warn('Supabase getMemories fallback to local:', err);
@@ -156,15 +148,12 @@ export const getMemories = async () => {
   // 2. Fallback to Local IndexedDB
   try {
     const local = await executeLocalTx('memories', 'readonly', store => store.getAll());
-    if (local && local.length > 0) {
+    if (local && Array.isArray(local)) {
       return local.sort((a, b) => new Date(b.date) - new Date(a.date));
     }
-    for (const mem of INITIAL_MEMORIES) {
-      await executeLocalTx('memories', 'readwrite', store => store.put(mem));
-    }
-    return INITIAL_MEMORIES;
+    return [];
   } catch (err) {
-    return INITIAL_MEMORIES;
+    return [];
   }
 };
 
@@ -257,19 +246,12 @@ export const getLetters = async () => {
         .select('*')
         .order('dateWritten', { ascending: true });
 
-      if (!error && data) {
-        if (data.length > 0) {
-          for (const l of data) {
-            await executeLocalTx('letters', 'readwrite', store => store.put(l));
-          }
-          return data;
-        } else {
-          for (const letter of INITIAL_LETTERS) {
-            await supabase.from('letters').upsert(letter);
-            await executeLocalTx('letters', 'readwrite', store => store.put(letter));
-          }
-          return INITIAL_LETTERS;
+      if (!error && Array.isArray(data)) {
+        await executeLocalTx('letters', 'readwrite', store => store.clear());
+        for (const l of data) {
+          await executeLocalTx('letters', 'readwrite', store => store.put(l));
         }
+        return data;
       }
     } catch (err) {
       console.warn('Supabase getLetters fallback to local:', err);
@@ -279,15 +261,12 @@ export const getLetters = async () => {
   // 2. Fallback to Local IndexedDB
   try {
     const local = await executeLocalTx('letters', 'readonly', store => store.getAll());
-    if (local && local.length > 0) {
+    if (local && Array.isArray(local)) {
       return local;
     }
-    for (const letter of INITIAL_LETTERS) {
-      await executeLocalTx('letters', 'readwrite', store => store.put(letter));
-    }
-    return INITIAL_LETTERS;
+    return [];
   } catch (err) {
-    return INITIAL_LETTERS;
+    return [];
   }
 };
 

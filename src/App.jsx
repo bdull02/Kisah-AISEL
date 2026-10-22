@@ -512,6 +512,10 @@ export default function App() {
                   }}
                   onDeleteMemory={handlePromptDeleteMemory}
                   onSavePosition={handleSavePosition}
+                  onAddMemory={() => {
+                    setEditingMemory(null);
+                    setIsAddMemoryOpen(true);
+                  }}
                 />
               )}
 

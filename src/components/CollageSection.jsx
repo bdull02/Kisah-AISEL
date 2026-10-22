@@ -11,7 +11,8 @@ export default function CollageSection({
   onViewMemory,
   onEditMemory,
   onDeleteMemory,
-  onSavePosition
+  onSavePosition,
+  onAddMemory
 }) {
   const [collageMode, setCollageMode] = useState('masonry'); // 'masonry' | 'corkboard'
   const [filterMood, setFilterMood] = useState('Semua');
@@ -162,7 +163,30 @@ export default function CollageSection({
       )}
 
       {/* CANVAS CONTAINER */}
-      {collageMode === 'masonry' ? (
+      {displayedMemories.length === 0 ? (
+        <div className="bg-[#FDFBF7] border-2 border-dashed border-[#2C2A29] rounded-2xl p-10 text-center space-y-4 max-w-lg mx-auto my-10">
+          <Sparkles className="w-12 h-12 mx-auto text-[#D96B5F]" />
+          <h3 className="font-serif text-2xl font-bold text-[#2C2A29]">
+            {memories.length === 0
+              ? 'Belum Ada Kenangan'
+              : 'Belum Ada Foto dengan Mood Ini'}
+          </h3>
+          <p className="text-sm text-[#2C2A29]/75 font-medium">
+            {memories.length === 0
+              ? 'Dinding kolase foto polaroid masih kosong. Yuk tempel momen dan foto manis kalian pertama kali!'
+              : `Belum ada foto yang ditandai dengan mood "${filterMood}". Coba ganti filter atau pilih "Semua".`}
+          </p>
+          {onAddMemory && (
+            <button
+              onClick={onAddMemory}
+              className="px-5 py-2.5 rounded-xl bg-[#F4A298] text-[#2C2A29] border-2 border-[#2C2A29] font-bold text-sm shadow-tactile inline-flex items-center gap-2 hover:translate-x-0.5 hover:translate-y-0.5 transition"
+            >
+              <Sparkles className="w-4 h-4" />
+              <span>Tempel Foto Pertama</span>
+            </button>
+          )}
+        </div>
+      ) : collageMode === 'masonry' ? (
         /* MODE 1: MASONRY ASYMMETRIC GRID */
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 pt-2">
           {displayedMemories.map((mem, index) => {

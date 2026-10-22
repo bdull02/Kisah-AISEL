@@ -119,9 +119,13 @@ export default function TimelineSection({
       {processedMemories.length === 0 ? (
         <div className="bg-[#FDFBF7] border-2 border-dashed border-[#2C2A29] rounded-2xl p-10 text-center space-y-4 max-w-lg mx-auto my-12">
           <DoodleHeart className="w-12 h-12 mx-auto" />
-          <h3 className="font-serif text-2xl font-bold">Belum Ada Kenangan yang Cocok</h3>
+          <h3 className="font-serif text-2xl font-bold">
+            {memories.length === 0 ? 'Belum Ada Kenangan' : 'Belum Ada Kenangan yang Cocok'}
+          </h3>
           <p className="text-sm text-[#2C2A29]/75 font-medium">
-            {searchTerm || selectedMood !== 'Semua'
+            {memories.length === 0
+              ? 'Belum ada kenangan yang ditambahkan. Yuk tempel momen dan cerita manis kalian pertama kali!'
+              : searchTerm || selectedMood !== 'Semua'
               ? 'Tidak ditemukan momen dengan kata kunci atau filter ini. Coba ubah pencarianmu.'
               : 'Jurnal masih kosong. Yuk tempel momen dan foto pertama kalian!'}
           </p>
