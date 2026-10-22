@@ -557,7 +557,7 @@ export default function App() {
             onClick={() => setIsSettingsOpen(true)}
             className="hover:underline text-[11px] font-bold text-[#D96B5F]"
           >
-            Cadangkan / Ekspor Data (.JSON)
+            ⚙️ Pengaturan Profil
           </button>
         </div>
       </footer>
@@ -618,9 +618,6 @@ export default function App() {
           isOpen={isSettingsOpen}
           onClose={() => setIsSettingsOpen(false)}
           onSave={handleSaveConfig}
-          onExportBackup={handleExportBackup}
-          onImportBackup={handleImportBackup}
-          onResetDemo={handlePromptResetDemo}
         />
       )}
 

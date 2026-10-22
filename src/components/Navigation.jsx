@@ -67,7 +67,7 @@ export default function Navigation({
           }`}
         >
           <Settings className="w-4 h-4" />
-          <span className="hidden sm:inline">Kelola & Backup</span>
+          <span className="hidden sm:inline">Pengaturan Profil</span>
         </button>
       </div>
 
