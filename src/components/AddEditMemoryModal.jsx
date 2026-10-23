@@ -146,10 +146,10 @@ export default function AddEditMemoryModal({
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-[#2C2A29]/65 backdrop-blur-xs flex items-center justify-center p-4 overflow-y-auto">
+    <div className="fixed inset-0 z-50 bg-[#2C2A29]/75 backdrop-blur-sm flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
       <form
         onSubmit={handleSubmit}
-        className="bg-[#FDFBF7] border-2 border-[#2C2A29] shadow-tactile-lg rounded-2xl max-w-2xl w-full p-6 sm:p-8 relative my-8 space-y-5 animate-in fade-in zoom-in-95 duration-150"
+        className="bg-[#FDFBF7] border-2 border-[#2C2A29] shadow-tactile-lg rounded-2xl max-w-2xl w-full p-5 sm:p-7 relative my-auto max-h-[92vh] overflow-y-auto space-y-5 animate-in fade-in zoom-in-95 duration-150"
       >
         <DoodleTape color={tapeColor || "rgba(163, 184, 153, 0.85)"} position="top-center" />
 

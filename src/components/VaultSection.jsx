@@ -309,11 +309,11 @@ export default function VaultSection({
 
       {/* LETTER READER MODAL */}
       {selectedLetter && (
-        <div className="fixed inset-0 z-50 bg-[#2C2A29]/70 backdrop-blur-xs flex items-center justify-center p-4 overflow-y-auto">
-          <div className="bg-[#FDFBF7] border-2 border-[#2C2A29] shadow-tactile-xl rounded-2xl max-w-xl w-full p-6 sm:p-8 relative my-8 animate-in fade-in zoom-in-95 duration-150">
+        <div className="fixed inset-0 z-50 bg-[#2C2A29]/75 backdrop-blur-sm flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+          <div className="bg-[#FDFBF7] border-2 border-[#2C2A29] shadow-tactile-xl rounded-2xl max-w-xl w-full p-4 sm:p-7 relative my-auto max-h-[92vh] flex flex-col animate-in fade-in zoom-in-95 duration-150">
             <DoodleTape color="rgba(244, 162, 152, 0.85)" position="top-center" />
 
-            <div className="flex items-center justify-between border-b-2 border-[#2C2A29] pb-3 mb-5">
+            <div className="flex items-center justify-between border-b-2 border-[#2C2A29] pb-3 mb-3 shrink-0">
               <div>
                 <span className="text-xs font-bold uppercase tracking-wider bg-[#A3B899] border border-[#2C2A29] px-2.5 py-0.5 rounded shadow-tactile-sm">
                   {selectedLetter.edition}
@@ -331,18 +331,18 @@ export default function VaultSection({
             </div>
 
             {/* Vintage Lined Stationery Sheet */}
-            <div className="bg-[#FDFBF7] [background-image:repeating-linear-gradient(transparent,transparent_31px,#E2C2B3_31px,#E2C2B3_32px)] leading-8 p-6 rounded-2xl border-2 border-[#2C2A29] shadow-inner min-h-[260px]">
+            <div className="bg-[#FDFBF7] [background-image:repeating-linear-gradient(transparent,transparent_31px,#E2C2B3_31px,#E2C2B3_32px)] leading-8 p-4 sm:p-6 rounded-2xl border-2 border-[#2C2A29] shadow-inner overflow-y-auto flex-1 min-h-[200px] break-words">
               <p className="font-handwriting text-2xl sm:text-3xl text-[#2C2A29] whitespace-pre-line leading-relaxed">
                 {selectedLetter.content}
               </p>
 
-              <div className="mt-8 text-right font-handwriting text-2xl sm:text-3xl font-bold text-[#2C2A29]">
+              <div className="mt-8 pb-2 text-right font-handwriting text-2xl sm:text-3xl font-bold text-[#2C2A29]">
                 — Tertanda penuh sayang, {selectedLetter.author}
               </div>
             </div>
 
             {/* Footer actions: only author can edit inside modal */}
-            <div className="mt-5 flex items-center justify-between text-xs font-bold text-[#2C2A29]/80 pt-2 border-t border-[#2C2A29]/20 flex-wrap gap-2">
+            <div className="mt-4 flex items-center justify-between text-xs font-bold text-[#2C2A29]/80 pt-2.5 border-t border-[#2C2A29]/20 flex-wrap gap-2 shrink-0">
               <span className="flex items-center gap-1.5">
                 <Stamp className="w-4 h-4 text-[#D96B5F]" />
                 Ditulis oleh {selectedLetter.author} ({new Date(selectedLetter.dateWritten).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })})

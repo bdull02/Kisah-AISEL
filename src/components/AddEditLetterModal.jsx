@@ -59,10 +59,10 @@ export default function AddEditLetterModal({
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-[#2C2A29]/70 backdrop-blur-xs flex items-center justify-center p-4 overflow-y-auto">
+    <div className="fixed inset-0 z-50 bg-[#2C2A29]/75 backdrop-blur-sm flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
       <form
         onSubmit={handleSubmit}
-        className="bg-[#FDFBF7] border-2 border-[#2C2A29] shadow-tactile-xl rounded-2xl max-w-lg w-full p-6 sm:p-8 relative my-8 space-y-4 animate-in fade-in zoom-in-95 duration-150"
+        className="bg-[#FDFBF7] border-2 border-[#2C2A29] shadow-tactile-xl rounded-2xl max-w-lg w-full p-5 sm:p-7 relative my-auto max-h-[92vh] overflow-y-auto space-y-4 animate-in fade-in zoom-in-95 duration-150"
       >
         <DoodleTape color="rgba(249, 226, 175, 0.95)" position="top-center" />
 
